@@ -79,27 +79,25 @@ async function analyzeCode(
 }
 
 function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
-  return `Your task is to review pull requests. Instructions:
-- Provide the response in following JSON format:  {"reviews": [{"lineNumber":  <line_number>, "reviewComment": "<review comment>"}]}
-- Do not give positive comments or compliments.
-- Provide comments and suggestions ONLY if there is something to improve, otherwise "reviews" should be an empty array.
-- Write the comment in GitHub Markdown format.
-- Use the given description only for the overall context and only comment the code.
-- IMPORTANT: NEVER suggest adding comments to the code.
-- All responses should be in Korean.
+  return `당신의 임무는 풀 리퀘스트를 검토하는 것입니다. 지침:
+- 다음 JSON 형식으로 응답을 제공하세요: {"reviews": [{"lineNumber": <줄_번호>, "reviewComment": "<리뷰_코멘트>"}]}
+- 긍정적인 코멘트나 칭찬은 하지 마세요.
+- 개선할 점이 있는 경우에만 코멘트와 제안을 제공하세요. 그렇지 않으면 "reviews"는 빈 배열이어야 합니다.
+- 코멘트를 GitHub 마크다운 형식으로 작성하세요.
+- 주어진 설명은 전체적인 맥락을 위해서만 사용하고 코드에 대해서만 코멘트하세요.
+- 중요: 절대로 코드에 주석을 추가하라고 제안하지 마세요.
+- 모든 응답은 한국어로 작성해야 합니다.
 
-Review the following code diff in the file "${
-    file.to
-  }" and take the pull request title and description into account when writing the response.
-  
-Pull request title: ${prDetails.title}
-Pull request description:
+"${file.to}" 파일의 다음 코드 diff를 검토하고, 응답을 작성할 때 풀 리퀘스트 제목과 설명을 고려하세요.
+
+풀 리퀘스트 제목: ${prDetails.title}
+풀 리퀘스트 설명:
 
 ---
 ${prDetails.description}
 ---
 
-Git diff to review:
+검토할 Git diff:
 
 \`\`\`diff
 ${chunk.content}
@@ -211,12 +209,12 @@ async function main() {
 
     diff = String(response.data);
   } else {
-    console.log("Unsupported event:", process.env.GITHUB_EVENT_NAME);
+    console.log("지원되지 않는 이벤트:", process.env.GITHUB_EVENT_NAME);
     return;
   }
 
   if (!diff) {
-    console.log("No diff found");
+    console.log("diff를 찾을 수 없습니다");
     return;
   }
 
@@ -245,6 +243,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error("Error:", error);
+  console.error("오류:", error);
   process.exit(1);
 });
