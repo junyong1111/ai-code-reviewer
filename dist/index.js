@@ -105,7 +105,7 @@ function analyzeCode(parsedDiff, prDetails) {
         return comments;
     });
 }
-function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
+function createPrompt(file, chunk, prDetails) {
   return `당신의 임무는 풀 리퀘스트를 검토하는 것입니다. 지침:
 - 다음 JSON 형식으로 응답을 제공하세요: {"reviews": [{"lineNumber": <줄_번호>, "reviewComment": "<리뷰_코멘트>"}]}
 - 긍정적인 코멘트나 칭찬은 하지 마세요.
