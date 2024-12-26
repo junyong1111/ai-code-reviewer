@@ -109,6 +109,7 @@ function createPrompt(file, chunk, prDetails) {
   return `당신의 임무는 풀 리퀘스트를 검토하는 것입니다. 지침:
 - 다음 JSON 형식으로 응답을 제공하세요: {"reviews": [{"lineNumber": <줄_번호>, "reviewComment": "<리뷰_코멘트>"}]}
 - 긍정적인 코멘트나 칭찬은 하지 마세요.
+- 주 언어는 Python, 프레임워크는 Fast API입니다.
 - 개선할 점이 있는 경우에만 코멘트와 제안을 제공하세요. 그렇지 않으면 "reviews"는 빈 배열이어야 합니다.
 - 코멘트를 GitHub 마크다운 형식으로 작성하세요.
 - 주어진 설명은 전체적인 맥락을 위해서만 사용하고 코드에 대해서만 코멘트하세요.
